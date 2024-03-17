@@ -79,6 +79,8 @@ $("#game-choice-wrapper").on("click", ".category-choice", function() {
 function setUp(id){
     let token = "";
     let categories = [];
+    $("#game-score-container").show();
+
 
     const waitToken = $.getJSON("https://opentdb.com/api_token.php?command=request")
         .then(function(result) {
@@ -129,12 +131,16 @@ async function answerQuestion(question, rightAns, wrongAns) {
         $(".game-choice").click(function() {
             const selectedAnswer = $(this).text();
             if (selectedAnswer === rightAns) {
+                $("#game-score").text(parseInt($("#game-score").text()) + 1);
                 $(this).animate({"box-shadow": "0 0 40px rgb(255, 255, 255)"}, 500);
                 $(this).css({"box-shadow": "0 0 40px green"});
                 setTimeout(() => {
                     resolve(selectedAnswer);
                 }, 1000);
             } else {
+                if (parseInt($("#game-score").text()) !== 0){
+                    $("#game-score").text(parseInt($("#game-score").text()) - 1);
+                }
                 $(this).animate({"box-shadow": "0 0 40px rgb(255, 255, 255)"}, 500);
                 $(this).css({"box-shadow": "0 0 40px red"});
                 setTimeout(() => {
