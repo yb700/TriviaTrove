@@ -112,6 +112,7 @@ function shuffleArray(array) {
 
 async function answerQuestion(question, rightAns, wrongAns) {
     $("#game-typewriter").css("white-space", "wrap")
+    $("#game-typewriter").css("border", "Hidden")
     $("#game-choice-wrapper").empty();
     $("#game-typewriter h1").text(decodeHtml(question));
     $("#game-typewriter h1").css("font-size", "1.5em");
@@ -128,14 +129,14 @@ async function answerQuestion(question, rightAns, wrongAns) {
         $(".game-choice").click(function() {
             const selectedAnswer = $(this).text();
             if (selectedAnswer === rightAns) {
-                $(this).animate({"box-shadow": "0 0 30px rgb(255, 255, 255)"}, 500);
-                $(this).css({"box-shadow": "0 0 30px green"});
+                $(this).animate({"box-shadow": "0 0 40px rgb(255, 255, 255)"}, 500);
+                $(this).css({"box-shadow": "0 0 40px green"});
                 setTimeout(() => {
                     resolve(selectedAnswer);
                 }, 1000);
             } else {
-                $(this).animate({"box-shadow": "0 0 30px rgb(255, 255, 255)"}, 500);
-                $(this).css({"box-shadow": "0 0 30px red"});
+                $(this).animate({"box-shadow": "0 0 40px rgb(255, 255, 255)"}, 500);
+                $(this).css({"box-shadow": "0 0 40px red"});
                 setTimeout(() => {
                     resolve(selectedAnswer);
                 }, 1000);
