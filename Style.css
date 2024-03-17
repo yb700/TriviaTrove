@@ -101,3 +101,76 @@ header nav a{
     border-radius: 20px;
     padding-inline: 20px;
 }
+
+#game-Section {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: 100%;
+    height: 100%;
+}
+
+#game-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 90%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+#game-choice-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    padding: 40px;
+    overflow-y: scroll;
+}
+
+#game-choice-wrapper::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+#game-wrapper h1{
+    font-family: "Press Start 2P", system-ui;
+    color: #A11FBB;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 3em;
+}
+
+#game-typewriter {
+    text-align: center;
+    overflow: hidden;
+    border-right: 1em solid orange;
+    white-space: nowrap; 
+    margin: 0 auto;
+    animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+    padding: 10px;
+}
+
+#game-wrapper a {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1.5em;
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 20px;
+    width: 600px;
+    transition: box-shadow 0.3s;
+}
+
+#game-wrapper a:hover {
+    box-shadow: 0 0 15px white;
+}
