@@ -21,6 +21,9 @@ const clickPhrases = [
     "Unleash your inner quiz champion!"
 ];
 
+let playedCategories = [];
+let catMap = new Map();
+
 function decodeHtml(html) {
     var txt = document.createElement("textarea");
     txt.innerHTML = html;
@@ -63,6 +66,7 @@ $.getJSON("https://opentdb.com/api_category.php", function(result) {
     });
 
     console.log(categoryMap);
+    catMap = categoryMap
 
     categoryMap.forEach(function(id, name) {
         $("#game-choice-wrapper").append('<a href="#" id="' + id + '" class="category-choice">' + name + '</a>');
@@ -80,7 +84,8 @@ function setUp(id){
     let token = "";
     let categories = [];
     $("#game-score-container").show();
-
+    
+    playedCategories.push(id);
 
     const waitToken = $.getJSON("https://opentdb.com/api_token.php?command=request")
         .then(function(result) {
@@ -103,6 +108,21 @@ function setUp(id){
         play(token, categories);
     });
 }
+
+function showCategories() {
+    $("#game-choice-wrapper").empty();
+    console.log(playedCategories)
+
+    catMap.forEach(function(id, name) {
+        $("#game-choice-wrapper").append('<a href="#" id="' + id + '" class="category-choice">' + name + '</a>');
+
+        if (playedCategories.includes("" + id + "")) {
+            $("#" + id + "").css("opacity", "0.35");
+            $("#" + id).removeClass("category-choice");
+        }
+    });
+}
+
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -151,12 +171,16 @@ async function answerQuestion(question, rightAns, wrongAns) {
     });
 }
 
+v26_uLKXE7P5kpt
+
+
 async function play(token, questions) {
     try {
         for (let i = 0; i < questions.length; i++) {
             const category = questions[i];
             await answerQuestion(category.question, category.correct_answer, category.incorrect_answers);
         }
+        showCategories();
     } catch (error) {
         console.error('Error during gameplay:', error);
     }
